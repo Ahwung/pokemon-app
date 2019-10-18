@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.carousel-container {
+	width: 75%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.carousel-images {
+	width: 40%;
+	box-sizing: border-box;
+}
+
+.carousel-images img {
+	width: 100%;
+	display: none;
+}
+
+.carousel-images img:first-of-type {
+	display: block;
+}
