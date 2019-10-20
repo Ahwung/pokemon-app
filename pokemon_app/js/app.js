@@ -20,31 +20,45 @@ $(() => {
 		choice = event.target.value;
 	})
 
+	// Click event for Search and Random buttons
 	$('form').on('submit', (event) => {
 		let userInput = $('input[type="text"]').val()
 
 		$('.carousel-images').children().eq(currentImgIndex).hide();
 
+		// Changing image index for searched value
+		// if (choice == 'Search') {
+		// 	if (userInput == 'bulbasaur') {
+		// 		currentImgIndex = 0
+		// 	} else if (userInput == 'charmander') {
+		// 		currentImgIndex = 1
+		// 	} else if (userInput == 'squirtle') {
+		// 		currentImgIndex = 2
+		// 	} else if (userInput == 'pikachu') {
+		// 		currentImgIndex = 3
+		// 	} else {
+		// 		alert("Pokemon not found")
+		// 	}
+		// 	$('.carousel-images').children().eq(currentImgIndex).show();
+		// }
 
-		if (choice == 'Search') {
-			if (userInput == 'bulbasaur') {
-				currentImgIndex = 0
-			} else if (userInput == 'charmander') {
-				currentImgIndex = 1
-			} else if (userInput == 'squirtle') {
-				currentImgIndex = 2
-			} else if (userInput == 'pikachu') {
-				currentImgIndex = 3
-			} else {
+		if (choice == "Search") {
+			currentImgIndex = pokemon.indexOf(userInput)
+			$('.carousel-images').children().eq(currentImgIndex).show();
+			console.log(currentImgIndex)
+			if (currentImgIndex == -1) {
 				alert("Pokemon not found")
 			}
-			$('.carousel-images').children().eq(currentImgIndex).show();
-		}
-
-		if (choice == 'Random') {
+		} else if (choice == 'Random' ) {
 			currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
 				$('.carousel-images').children().eq(currentImgIndex).show();
-		}
+		} 
+
+		// Generating random number and changing carousel image for current index number
+		// if (choice == 'Random' ) {
+		// 	currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
+		// 		$('.carousel-images').children().eq(currentImgIndex).show();
+		// }
 	})
 
 	// Click event for next button
