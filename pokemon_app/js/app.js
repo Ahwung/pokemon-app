@@ -8,6 +8,8 @@ $(() => {
 	// Variables for next and previous buttons
 	let currentImgIndex = 0;
 	let highestImgIndex = $('.carousel-images').children().length - 1
+
+	// Variable to set current picture
 	let currentPokemon = ''
 
 	// Click event for next button
@@ -30,6 +32,11 @@ $(() => {
 			currentImgIndex = highestImgIndex
 		}
 		$('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
+	})
+
+	// Click event to close modal box
+	$('.close').on('click', () => {
+		$('.modal').hide();
 	})
 
 	// Ajax call to get data from PokeAPI
