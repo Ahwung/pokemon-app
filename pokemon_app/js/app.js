@@ -44,6 +44,7 @@ $(() => {
 
 		event.preventDefault();
 
+		// Setting current pokemon so that Ajax call will display correct infomration
 		if (currentImgIndex == 0) {
 			currentPokemon = 'bulbasaur'
 		} else if (currentImgIndex == 1) {
