@@ -38,8 +38,13 @@ $(() => {
 			} else {
 				alert("Pokemon not found")
 			}
+			$('.carousel-images').children().eq(currentImgIndex).show();
 		}
-		$('.carousel-images').children().eq(currentImgIndex).show();
+
+		if (choice == 'Random') {
+			currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
+				$('.carousel-images').children().eq(currentImgIndex).show();
+		}
 	})
 
 	// Click event for next button
