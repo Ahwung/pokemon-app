@@ -1,5 +1,5 @@
 
-
+const pokemon = ['bulbasaur', 'charmander', 'squirtle', 'pikachu']
 
 
 $(() => {
@@ -8,6 +8,7 @@ $(() => {
 	// Variables for next and previous buttons
 	let currentImgIndex = 0;
 	let highestImgIndex = $('.carousel-images').children().length - 1
+	let currentPokemon = ''
 
 	// Click event for next button
 	$('.next').on('click', () => {
@@ -32,12 +33,28 @@ $(() => {
 	})
 
 	// Ajax call to get data from PokeAPI
-	$.ajax({
-		url: "https://pokeapi.co/api/v2/pokemon/1",
-		type: "GET",
-	}).then(
-	(data) => {
-		console.log(data);
+	$('img').on('click', (event) => {
+
+		event.preventDefault();
+
+		if (currentImgIndex == 0) {
+			currentPokemon = 'bulbasaur'
+		} else if (currentImgIndex == 1) {
+			currentPokemon = 'charmander'
+		} else if (currentImgIndex == 2) {
+			currentPokemon = 'squirtle'
+		} else if (currentImgIndex == 3) {
+			currentPokemon = 'pikachu'
+		}
+
+
+		$.ajax({
+			url: "https://pokeapi.co/api/v2/pokemon/" + currentPokemon,
+			type: "GET",
+		}).then(
+		(data) => {
+			$('.name').text(data.name)
+		})
 	})
 	
 });
