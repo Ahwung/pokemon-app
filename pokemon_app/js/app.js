@@ -12,6 +12,16 @@ $(() => {
 	// Variable to set current picture
 	let currentPokemon = ''
 
+	// Variable for submit button pressed
+	let choice
+
+	// Click event to get value of submit input value
+	$('input[type="submit"]').on('click', (event) => {
+		choice = event.target.value;
+	})
+
+
+
 	// Click event for next button
 	$('.next').on('click', () => {
 		$('.carousel-images').children().eq(currentImgIndex).css('display', 'none')
