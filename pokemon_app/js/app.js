@@ -20,28 +20,48 @@ $(() => {
 		choice = event.target.value;
 	})
 
+	$('form').on('submit', (event) => {
+		let userInput = $('input[type="text"]').val()
 
+		$('.carousel-images').children().eq(currentImgIndex).hide();
+
+
+		if (choice == 'Search') {
+			if (userInput == 'bulbasaur') {
+				currentImgIndex = 0
+			} else if (userInput == 'charmander') {
+				currentImgIndex = 1
+			} else if (userInput == 'squirtle') {
+				currentImgIndex = 2
+			} else if (userInput == 'pikachu') {
+				currentImgIndex = 3
+			} else {
+				alert("Pokemon not found")
+			}
+		}
+		$('.carousel-images').children().eq(currentImgIndex).show();
+	})
 
 	// Click event for next button
 	$('.next').on('click', () => {
-		$('.carousel-images').children().eq(currentImgIndex).css('display', 'none')
+		$('.carousel-images').children().eq(currentImgIndex).hide();
 		if (currentImgIndex < highestImgIndex) {
 			currentImgIndex++;
 		} else {
 			currentImgIndex = 0
 		}
-		$('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
+		$('.carousel-images').children().eq(currentImgIndex).show()
 	})
 
 	// Click event for previous button
 	$('.previous').on('click', () => {
-		$('.carousel-images').children().eq(currentImgIndex).css('display', 'none')
+		$('.carousel-images').children().eq(currentImgIndex).hide()
 		if (currentImgIndex > 0) {
 			currentImgIndex--;
 		} else {
 			currentImgIndex = highestImgIndex
 		}
-		$('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
+		$('.carousel-images').children().eq(currentImgIndex).show();
 	})
 
 	// Click event to close modal box
