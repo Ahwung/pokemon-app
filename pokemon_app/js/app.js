@@ -53,8 +53,13 @@ $(() => {
 			type: "GET",
 		}).then(
 		(data) => {
-			$('.name').text(data.name)
+			$('.name').text("Pokemon: " + data.name)
+			$('.pokedex-number').text("Pokedex Number: " + data.id)
+			$('.weight').text("Weight: " + data.weight)
+			$('.height').text("Height: " + data.height)
 		})
+
+		$('.modal').show();
 	})
 	
 });
