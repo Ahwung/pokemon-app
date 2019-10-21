@@ -26,7 +26,7 @@ $(() => {
 
 		$('.carousel-images').children().eq(currentImgIndex).hide();
 
-		// Changing image index for searched value
+		// (OLD CODE) Changing image index for searched value
 		// if (choice == 'Search') {
 		// 	if (userInput == 'bulbasaur') {
 		// 		currentImgIndex = 0
@@ -42,10 +42,10 @@ $(() => {
 		// 	$('.carousel-images').children().eq(currentImgIndex).show();
 		// }
 
+		// Changing index value of Pokemon input and generating random number for Pokemon
 		if (choice == "Search") {
 			currentImgIndex = pokemon.indexOf(userInput)
 			$('.carousel-images').children().eq(currentImgIndex).show();
-			console.log(currentImgIndex)
 			if (currentImgIndex == -1) {
 				alert("Pokemon not found")
 			}
@@ -54,7 +54,7 @@ $(() => {
 				$('.carousel-images').children().eq(currentImgIndex).show();
 		} 
 
-		// Generating random number and changing carousel image for current index number
+		// (OLD CODE) Generating random number and changing carousel image for current index number
 		// if (choice == 'Random' ) {
 		// 	currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
 		// 		$('.carousel-images').children().eq(currentImgIndex).show();
@@ -94,15 +94,17 @@ $(() => {
 		event.preventDefault();
 
 		// Setting current pokemon so that Ajax call will display correct infomration
-		if (currentImgIndex == 0) {
-			currentPokemon = 'bulbasaur'
-		} else if (currentImgIndex == 1) {
-			currentPokemon = 'charmander'
-		} else if (currentImgIndex == 2) {
-			currentPokemon = 'squirtle'
-		} else if (currentImgIndex == 3) {
-			currentPokemon = 'pikachu'
-		}
+		// if (currentImgIndex == 0) {
+		// 	currentPokemon = 'bulbasaur'
+		// } else if (currentImgIndex == 1) {
+		// 	currentPokemon = 'charmander'
+		// } else if (currentImgIndex == 2) {
+		// 	currentPokemon = 'squirtle'
+		// } else if (currentImgIndex == 3) {
+		// 	currentPokemon = 'pikachu'
+		// }
+
+		let currentPokemon = pokemon[currentImgIndex]
 
 
 		$.ajax({
@@ -112,6 +114,7 @@ $(() => {
 		(data) => {
 			$('.name').text("Pokemon: " + data.name)
 			$('.pokedex-number').text("Pokedex Number: " + data.id)
+			
 			$('.weight').text("Weight: " + data.weight)
 			$('.height').text("Height: " + data.height)
 		})
