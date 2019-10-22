@@ -93,7 +93,7 @@ $(() => {
 
 		event.preventDefault();
 
-		// Setting current pokemon so that Ajax call will display correct infomration
+		// (OLD CODE) Setting current pokemon so that Ajax call will display correct infomration
 		// if (currentImgIndex == 0) {
 		// 	currentPokemon = 'bulbasaur'
 		// } else if (currentImgIndex == 1) {
@@ -114,7 +114,7 @@ $(() => {
 		(data) => {
 			$('.name').text("Pokemon: " + data.name)
 			$('.pokedex-number').text("Pokedex Number: " + data.id)
-			
+
 			$('.weight').text("Weight: " + data.weight)
 			$('.height').text("Height: " + data.height)
 		})
