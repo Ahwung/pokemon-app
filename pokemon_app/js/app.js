@@ -1,4 +1,4 @@
-const pokemon = ["bulbasaur", "charmander", "squirtle", "pikachu"];
+const pokemon = ["bulbasaur", "charmander", "squirtle", "pikachu", "magikarp", "eevee", "mewtwo", "mew"];
 
 $(() => {
 	// Variables for next and previous buttons
