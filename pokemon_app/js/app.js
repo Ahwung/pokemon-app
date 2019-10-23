@@ -1,30 +1,29 @@
-
-const pokemon = ['bulbasaur', 'charmander', 'squirtle', 'pikachu']
-
+const pokemon = ["bulbasaur", "charmander", "squirtle", "pikachu"];
 
 $(() => {
-
-
 	// Variables for next and previous buttons
 	let currentImgIndex = 0;
-	let highestImgIndex = $('.carousel-images').children().length - 1
+	let highestImgIndex = $(".carousel-images").children().length - 1;
 
 	// Variable to set current picture
-	let currentPokemon = ''
+	let currentPokemon = "";
 
 	// Variable for submit button pressed
-	let choice
+	let choice;
 
 	// Click event to get value of submit input value
-	$('input[type="submit"]').on('click', (event) => {
+	$('input[type="submit"]').on("click", event => {
 		choice = event.target.value;
-	})
+	});
 
 	// Click event for Search and Random buttons
-	$('form').on('submit', (event) => {
-		let userInput = $('input[type="text"]').val()
+	$("form").on("submit", event => {
+		let userInput = $('input[type="text"]').val();
 
-		$('.carousel-images').children().eq(currentImgIndex).hide();
+		$(".carousel-images")
+			.children()
+			.eq(currentImgIndex)
+			.hide();
 
 		// (OLD CODE) Changing image index for searched value
 		// if (choice == 'Search') {
@@ -44,53 +43,72 @@ $(() => {
 
 		// Changing index value of Pokemon input and generating random number for Pokemon
 		if (choice == "Search") {
-			currentImgIndex = pokemon.indexOf(userInput)
-			$('.carousel-images').children().eq(currentImgIndex).show();
+			currentImgIndex = pokemon.indexOf(userInput);
+			$(".carousel-images")
+				.children()
+				.eq(currentImgIndex)
+				.show();
 			if (currentImgIndex == -1) {
-				alert("Pokemon not found")
+				alert("Pokemon not found");
 			}
-		} else if (choice == 'Random' ) {
-			currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
-			$('.carousel-images').children().eq(currentImgIndex).show();
-		} 
+		} else if (choice == "Random") {
+			currentImgIndex = Math.floor(
+				Math.random() * $(".carousel-images").children().length
+			);
+			$(".carousel-images")
+				.children()
+				.eq(currentImgIndex)
+				.show();
+		}
 
 		// (OLD CODE) Generating random number and changing carousel image for current index number
 		// if (choice == 'Random' ) {
 		// 	currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
 		// 		$('.carousel-images').children().eq(currentImgIndex).show();
 		// }
-	})
+	});
 
 	// Click event for next button
-	$('.next').on('click', () => {
-		$('.carousel-images').children().eq(currentImgIndex).hide();
+	$(".next").on("click", () => {
+		$(".carousel-images")
+			.children()
+			.eq(currentImgIndex)
+			.hide();
 		if (currentImgIndex < highestImgIndex) {
 			currentImgIndex++;
 		} else {
-			currentImgIndex = 0
+			currentImgIndex = 0;
 		}
-		$('.carousel-images').children().eq(currentImgIndex).show()
-	})
+		$(".carousel-images")
+			.children()
+			.eq(currentImgIndex)
+			.show();
+	});
 
 	// Click event for previous button
-	$('.previous').on('click', () => {
-		$('.carousel-images').children().eq(currentImgIndex).hide()
+	$(".previous").on("click", () => {
+		$(".carousel-images")
+			.children()
+			.eq(currentImgIndex)
+			.hide();
 		if (currentImgIndex > 0) {
 			currentImgIndex--;
 		} else {
-			currentImgIndex = highestImgIndex
+			currentImgIndex = highestImgIndex;
 		}
-		$('.carousel-images').children().eq(currentImgIndex).show();
-	})
+		$(".carousel-images")
+			.children()
+			.eq(currentImgIndex)
+			.show();
+	});
 
 	// Click event to close modal box
-	$('.close').on('click', () => {
-		$('.modal').hide();
-	})
+	$(".close").on("click", () => {
+		$(".modal").hide();
+	});
 
 	// Ajax call to get data from PokeAPI
-	$('img').on('click', (event) => {
-
+	$("img").on("click", event => {
 		event.preventDefault();
 
 		// (OLD CODE) Setting current pokemon so that Ajax call will display correct infomration
@@ -104,30 +122,26 @@ $(() => {
 		// 	currentPokemon = 'pikachu'
 		// }
 
-		let currentPokemon = pokemon[currentImgIndex]
-
+		let currentPokemon = pokemon[currentImgIndex];
 
 		$.ajax({
 			url: "https://pokeapi.co/api/v2/pokemon/" + currentPokemon,
-			type: "GET",
-		}).then(
-		(data) => {
-			$('.name').text("Pokemon: " + data.name)
-			$('.pokedex-number').text("Pokedex Number: " + data.id)
+			type: "GET"
+		}).then(data => {
+			$(".name").text("Pokemon: " + data.name);
+			$(".pokedex-number").text("Pokedex Number: " + data.id);
 
-			$('.weight').text("Weight: " + data.weight)
-			$('.height').text("Height: " + data.height)
-		})
-		
+			$(".weight").text("Weight: " + data.weight);
+			$(".height").text("Height: " + data.height);
+		});
+
 		$.ajax({
 			url: "https://pokeapi.co/api/v2/pokemon-species/" + currentPokemon,
-			type: "GET",
-		}).then(
-		(data) => {
-			$('.species-data').text(data.flavor_text_entries[53].flavor_text)
-		})
+			type: "GET"
+		}).then(data => {
+			$(".species-data").text(data.flavor_text_entries[53].flavor_text);
+		});
 
-		$('.modal').show();
-	})
-	
+		$(".modal").show();
+	});
 });
