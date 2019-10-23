@@ -1,5 +1,6 @@
 body {
-	margin: 0;
+
+	background-color: black;
 }
 
 .gen-1 {
@@ -7,8 +8,23 @@ body {
 	margin: 0;
 }
 
+.gen-1-sprites, .gen-2-sprites, .gen-3-sprites {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+h1 {
+	cursor: pointer;
+}
+
+img {
+	cursor: pointer;
+}
+
 .gen-2 {
 	background-color: silver;
+	margin: 0;
 }
 
 .gen-3 {
