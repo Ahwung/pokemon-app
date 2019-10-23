@@ -51,7 +51,7 @@ $(() => {
 			}
 		} else if (choice == 'Random' ) {
 			currentImgIndex = Math.floor(Math.random() * $('.carousel-images').children().length)
-				$('.carousel-images').children().eq(currentImgIndex).show();
+			$('.carousel-images').children().eq(currentImgIndex).show();
 		} 
 
 		// (OLD CODE) Generating random number and changing carousel image for current index number
@@ -117,6 +117,14 @@ $(() => {
 
 			$('.weight').text("Weight: " + data.weight)
 			$('.height').text("Height: " + data.height)
+		})
+		
+		$.ajax({
+			url: "https://pokeapi.co/api/v2/pokemon-species/" + currentPokemon,
+			type: "GET",
+		}).then(
+		(data) => {
+			$('.species-data').text(data.flavor_text_entries[53].flavor_text)
 		})
 
 		$('.modal').show();
