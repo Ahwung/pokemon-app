@@ -1,0 +1,23 @@
+body {
+	background-color: red;
+}
+
+.modal {
+	background-color: rgba(0,0,0,.7);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	overflow: auto;
+	display: none;
+}
+
+.modal-info-box {
+	background-color: white;
+	height: 400px;
+	width: 400px;
+	border: 2px solid black;
+	margin: 100px auto;
+}
